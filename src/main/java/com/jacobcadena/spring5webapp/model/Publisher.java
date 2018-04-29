@@ -1,13 +1,10 @@
 package com.jacobcadena.spring5webapp.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-public class Author {
-
+public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,22 +12,13 @@ public class Author {
     private String firstName;
     private String lastName;
 
-    @ManyToMany(mappedBy = "authors")
-    private Set<Book> books = new HashSet<>();
-
-    public Author(){
-
+    public Publisher(){
+        
     }
 
-    public Author(String firstName, String lastName) {
+    public Publisher(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public Author(String firstName, String lastName, Set<Book> books) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.books = books;
     }
 
     public Long getId() {
@@ -57,20 +45,13 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<Book> books) {
-        this.books = books;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Author author = (Author) o;
-        return Objects.equals(id, author.id);
+        Publisher publisher = (Publisher) o;
+        return Objects.equals(id, publisher.id);
     }
 
     @Override
@@ -81,11 +62,10 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author{" +
+        return "Publisher{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", books=" + books +
                 '}';
     }
 }
